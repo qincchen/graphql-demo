@@ -4,10 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/main.js --exec babel-node"
+    "start": "nodemon src/main.js --exec babel-node",
+    "build": "babel src -d build",
+    "serve": "node build/main.js"
   },
   "author": "Qin Cheng Chen",
   "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.0",
+    "express-graphql": "^0.6.1",
+    "graphql": "^0.8.2"
+  },
   "devDependencies": {
     "babel-cli": "^6.22.2",
     "babel-core": "^6.22.1",
