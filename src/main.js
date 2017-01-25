@@ -9,7 +9,8 @@ var schema = buildSchema(`
     hello: String,
     getBook(id: Int!): Book,
     getBookReturnError(id: Int!): Book,
-    getBookPromise(id: Int): Book
+    getBookPromise(id: Int): Book,
+    getAuthor(id: Int!): Author
   }
   
   type Mutation {
@@ -23,6 +24,7 @@ var schema = buildSchema(`
   }
   
   type Author {
+    id: Int,
     name: String        
   }
 `);
@@ -32,7 +34,8 @@ var root = {
   getBook: ({ id }) => BookService.getBook(id),
   getBookReturnError: ({ id }) => BookService.getBookReturnError(id),
   getBookPromise: ({ id }) => BookService.getBookPromise(id),
-  createBook: input => BookService.createBook(input)
+  createBook: input => BookService.createBook(input),
+  getAuthor: ({ id }) => BookService.getAuthor(id)
 };
 
 var app = express();
@@ -49,6 +52,14 @@ app.get('/book/:id', (req, res) => {
   } = req.params;
 
   res.json(BookService.getBook(id));
+});
+
+app.get('/author/:id', (req, res) => {
+  const {
+    id
+  } = req.params;
+
+  res.json(BookService.getAuthor(id));
 });
 
 app.listen(4000, () => console.log('Now browse to localhost:4000/graphql'));

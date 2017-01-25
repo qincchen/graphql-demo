@@ -8,6 +8,13 @@ const books = {
   }
 };
 
+const authors = {
+  1: {
+    id: 1,
+    name: "Jason"
+  }
+};
+
 export const BookService = {
 
   getBook(id) {
@@ -67,8 +74,12 @@ export const BookService = {
     books[id] = newBook;
 
     return newBook;
+  },
+
+  getAuthor(id) {
+    if (!authors[id]) throw `author with id ${id} does not exist`;
+
+    return authors[id];
   }
-
-
 };
 
