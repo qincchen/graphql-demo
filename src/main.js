@@ -17,12 +17,15 @@ var schema = buildSchema(`
     createBook(id: ID!, title: String!, authorName: String): Book
   }
   
+  # this is a comment for Book objet
   type Book {
+    # comment for title of a book
     title: String@deprecated,
     id: Int,
     author: Author
   }
   
+  # this is a comment for Author objet
   type Author {
     id: Int,
     name: String        
