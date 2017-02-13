@@ -11,6 +11,7 @@
   "author": "Qin Cheng Chen",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.16.0",
     "express": "^4.14.0",
     "express-graphql": "^0.6.1",
     "graphql": "^0.8.2"

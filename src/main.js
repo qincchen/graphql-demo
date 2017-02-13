@@ -7,10 +7,10 @@ import { BookService } from './services';
 var schema = buildSchema(`
   type Query {
     hello: String,
-    getBook(id: Int!): Book,
-    getBookReturnError(id: Int!): Book,
-    getBookPromise(id: Int): Book,
-    getAuthor(id: Int!): Author
+    book(id: Int!): Book,
+    bookReturnError(id: Int!): Book,
+    bookPromise(id: Int): Book,
+    author(id: Int!): Author
   }
   
   type Mutation {
@@ -34,11 +34,11 @@ var schema = buildSchema(`
 
 var root = {
   hello: () => 'Hello world!',
-  getBook: ({ id }) => BookService.getBook(id),
-  getBookReturnError: ({ id }) => BookService.getBookReturnError(id),
-  getBookPromise: ({ id }) => BookService.getBookPromise(id),
+  book: ({ id }) => BookService.getBook(id),
+  bookReturnError: ({ id }) => BookService.getBookReturnError(id),
+  bookPromise: ({ id }) => BookService.getBookPromise(id),
   createBook: input => BookService.createBook(input),
-  getAuthor: ({ id }) => BookService.getAuthor(id)
+  author: ({ id }) => BookService.getAuthor(id)
 };
 
 var app = express();
@@ -46,7 +46,7 @@ var app = express();
 app.use('/graphql', graphqlHTTP({
   schema: schema,
   rootValue: root,
-  graphiql: true,
+  graphiql: true
 }));
 
 app.get('/book/:id', (req, res) => {
